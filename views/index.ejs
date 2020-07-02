@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Geo Location Saver</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header class='container'>
+            <input class='inp' placeholder="Enter your name..."/>
+        </header>
+
+        <section id='button-container' class='container'>
+            <div class=' btn-container'>
+                <button class='btn'>Get Location</button>
+                <button class='save'>Save</button>
+            </div>
+        </section>
+
+        <div class='output-container container'>
+             <span class='output'></span>
+        </div>
+
+        <section id='content-wrapper'>
+            <div class='user-content container'>
+                <ul>
+                  <%  userlocs.forEach(user=>{ %>
+                    <li>
+                            <ul class='sub-list'>
+                                <li>Name: <%= user.name %></li>
+                                <li>Latitude: <%= user.lat %></li>
+                                <li>Longitude: <%= user.long %></li>
+                            </ul>
+                            <button class='card-del' data-doc='/delete/<%= user._id%>'>
+                                delete
+                            </button>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </section>
+        <script >
+            function _id(id){
+                return document.querySelector(id);
+            }
+            let lat,long;
+            _id('.btn').addEventListener('click', (e) =>{
+                if('geolocation' in navigator){
+                    navigator.geolocation.getCurrentPosition(pos=>{
+                        lat = pos.coords.latitude.toFixed(2);
+                        long= pos.coords.longitude.toFixed(2);
+                    })                    
+                }
+                _id('.output').innerHTML= (`Your Location is: Lat ${lat} and Long ${long}`);
+            })
+            
+
+            /*******Fetch Post Location to server*******/
+            _id('.save').addEventListener('click',e=>{
+                if(lat!= undefined){
+                    const name = _id('.inp').value;
+                    const url = '/location/?name='+name+'&lat='+lat+'&long='+long;
+                    fetch(url,{
+                        method:'POST'
+                    })
+                    .then(res=>res.json())
+                    .then(data=>window.location.href=data.redirect)
+                    .catch(err=>console.log(err))
+                }
+                _id('.inp').value="";
+            })
+
+            /*******Fetch Delete Request*******/
+            _id('.card-del').addEventListener('click',e=>{
+                const url= _id('.card-del').dataset.doc;
+                fetch(url,{
+                    method:'DELETE'
+                })
+                .then(res=>res.json())
+                .then(data=>window.location.href=data.redirect)
+            })
+        </script>
+    </body>
+</html>

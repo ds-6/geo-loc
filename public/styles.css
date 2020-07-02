@@ -1,0 +1,90 @@
+body{
+    background:#f3f3f3;
+    padding: 0;
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+.container{
+    padding:10px;
+}
+header{
+    height:70px;
+    text-align: center;
+    background: #212121;
+}
+header input{
+    height:50px;
+    background:#333;
+    color:#777;
+    font-size: 30px;
+    outline: none;
+    padding-left:20px;
+    margin-top:10px;
+    width:80%;
+    border:none;
+    border-radius:25px;
+}
+#button-container{
+    height:100px;
+}
+.btn-container{
+    width: 350px;
+    margin:50px auto;
+    transform: translateY(-50%);
+}
+.btn-container button{
+    border:none;
+    outline:none;
+    height:50px;
+    width:150px;
+    margin-left:20px;
+    color:#f3f3f3;
+    font-size: 20px;
+    cursor:pointer;
+    display:inline-block;
+    border-radius:8px;
+}
+.btn-container .btn{
+    background: #26c281;
+}
+.btn-container .save{
+    background:crimson;
+}
+.output-container{
+    font-size: 25px;
+}
+.user-content ul{
+    list-style-type: none;
+    padding:0;
+    margin:0;
+}
+.user-content>ul>li{
+    padding:10px 20px;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.2);
+    margin-bottom:10px;
+    overflow: hidden;
+    height: 100px;
+}
+.user-content .sub-list{
+    width:300px;
+    float:left;
+}
+.user-content .sub-list li{
+    margin: 10px 0;
+    border-bottom:1px solid rgba(0,0,0,.04)
+}
+.user-content>ul>li button{
+    float:right;
+    border:none;
+    outline:none;
+    cursor:pointer;
+    background:crimson;
+    color:#f3f3f3;
+    border-radius:4px;
+    padding:5px 10px;
+    height:40px;
+    font-size: 17px;
+    margin-top:5px;
+    transform: translateY(50%);
+}
