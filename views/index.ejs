@@ -50,20 +50,18 @@
             function _id(id){
                 return document.querySelector(id);
             }
+
+  /********Get Geo Location*********/
+        
             let lat,long;
-            var n = 1;
             _id('.btn').addEventListener('click', (e) =>{
-                if('geolocation' in navigator){
+                if(navigator.geolocation){
                     navigator.geolocation.getCurrentPosition(pos=>{
                         lat = pos.coords.latitude.toFixed(2);
                         long= pos.coords.longitude.toFixed(2);
+                        _id('.output').innerHTML= (`Your Location is: Lat ${lat} and Long ${long}`);
                     })                    
                 }
-                if(n==2){
-                    _id('.output').innerHTML= (`Your Location is: Lat ${lat} and Long ${long}`);
-                    n=1;
-                }
-                n++;
             })
             
 

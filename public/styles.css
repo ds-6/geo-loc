@@ -11,12 +11,12 @@ body{
 header{
     height:70px;
     text-align: center;
-    background: #212121;
+    background: #065535;
 }
 header input{
     height:50px;
-    background:#333;
-    color:#777;
+    background:#04442a;
+    color:#666;
     font-size: 30px;
     outline: none;
     padding-left:20px;
@@ -29,7 +29,7 @@ header input{
     height:100px;
 }
 .btn-container{
-    width: 350px;
+    text-align: center;
     margin:50px auto;
     transform: translateY(-50%);
 }
@@ -37,8 +37,8 @@ header input{
     border:none;
     outline:none;
     height:50px;
-    width:150px;
-    margin-left:20px;
+    width:130px;
+    margin-right:10px;
     font-size: 20px;
     cursor:pointer;
     display:inline-block;
@@ -47,6 +47,9 @@ header input{
     box-shadow:0 0 5px rgba(0,0,0,.2);
     padding: 5px 0;
 
+}
+.btn-container button.save{
+    margin-right:0;
 }
 .output-container{
     font-size: 25px;
