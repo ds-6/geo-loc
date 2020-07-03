@@ -47,7 +47,7 @@
             <div class="temp-detail">
                 <i class="fa fa-times" aria-hidden="true"></i>
                 <div class='temp-result'>
-                    <div class='loc'></div>
+                    <div class='loc'>Loading...</div>
                     <div class='aqiData'></div>
                 </div>
             </div>
@@ -111,11 +111,12 @@
             function getTemp(){
                 _id('.temp-detail').classList.add('show');
                 const arr= _id('.tempBTN').dataset.doc.split(',');
-                const uri ="https://api.openaq.org/v1/measurements?coordinates="+arr[0]+","+arr[1]+"&radius=4000";
+                const uri ="https://api.openaq.org/v1/measurements?coordinates="+arr[0]+","+arr[1]+"&radius=4000&parameter=pm10&limit=1";
                 fetch(uri,{
                     method:'GET'
                 }).then(res=>res.json())
                 .then(data=>{
+                    console.log(data);
                     const city = data.results[0].location;
                     const aqi = data.results[0].value
                     const dateArr = data.results[0].date.local.split('T')
