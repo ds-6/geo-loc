@@ -38,7 +38,7 @@
                                 <li>Latitude: <%= user.lat %></li>
                                 <li>Longitude: <%= user.long %></li>
                             </ul>
-                            <button class='card-del' data-doc='/delete/<%= user._id%>'>
+                            <button class='card-del' data-doc='/delete/<%= user._id %>'>
                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </li>
@@ -83,14 +83,20 @@
             })
 
             /*******Fetch Delete Request*******/
-            _id('.card-del').addEventListener('click',e=>{
+            const del = document.querySelectorAll('.card-del');
+            del.forEach(e=>{
+                e.addEventListener('click',delItem);
+            })
+            _id('.card-del').addEventListener('click',delItem);
+            function delItem(){
                 const url= _id('.card-del').dataset.doc;
+                console.log(url);
                 fetch(url,{
                     method:'DELETE'
                 })
                 .then(res=>res.json())
                 .then(data=>window.location.href=data.redirect)
-            })
+            }
         </script>
     </body>
 </html>
