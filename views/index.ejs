@@ -10,6 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <header class='container'>
@@ -38,7 +39,7 @@
                                 <li>Longitude: <%= user.long %></li>
                             </ul>
                             <button class='card-del' data-doc='/delete/<%= user._id%>'>
-                                delete
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </li>
                     <% }) %>
@@ -50,6 +51,7 @@
                 return document.querySelector(id);
             }
             let lat,long;
+            var n = 1;
             _id('.btn').addEventListener('click', (e) =>{
                 if('geolocation' in navigator){
                     navigator.geolocation.getCurrentPosition(pos=>{
@@ -57,7 +59,11 @@
                         long= pos.coords.longitude.toFixed(2);
                     })                    
                 }
-                _id('.output').innerHTML= (`Your Location is: Lat ${lat} and Long ${long}`);
+                if(n==2){
+                    _id('.output').innerHTML= (`Your Location is: Lat ${lat} and Long ${long}`);
+                    n=1;
+                }
+                n++;
             })
             
 

@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Userloc = require('./models/userloc');
+const keys = require('./config');
 
 const app = express ();
 
-const dbURI = "mongodb://deepak:12345@project-1-shard-00-00-ea9wt.mongodb.net:27017,project-1-shard-00-01-ea9wt.mongodb.net:27017,project-1-shard-00-02-ea9wt.mongodb.net:27017/project1?ssl=true&replicaSet=project-1-shard-0&authSource=admin&retryWrites=true&w=majority";
+const dbURI = keys.dbKey;
 mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(result=>{
     

@@ -21,7 +21,7 @@ header input{
     outline: none;
     padding-left:20px;
     margin-top:10px;
-    width:80%;
+    width:70%;
     border:none;
     border-radius:25px;
 }
@@ -39,35 +39,37 @@ header input{
     height:50px;
     width:150px;
     margin-left:20px;
-    color:#f3f3f3;
     font-size: 20px;
     cursor:pointer;
     display:inline-block;
-    border-radius:8px;
-}
-.btn-container .btn{
-    background: #26c281;
-}
-.btn-container .save{
-    background:crimson;
+    border-radius:75px;
+    background:#f7f7f7;
+    box-shadow:0 0 5px rgba(0,0,0,.2);
+    padding: 5px 0;
+
 }
 .output-container{
     font-size: 25px;
+    text-align:center;
+    width:70%;
+    margin:0 auto;
 }
 .user-content ul{
     list-style-type: none;
     padding:0;
-    margin:0;
+    margin:0 auto;
+    width:70%;
 }
 .user-content>ul>li{
-    padding:10px 20px;
+    padding: 0 0 0 20px;
     box-shadow: 0px 0px 3px rgba(0,0,0,.2);
     margin-bottom:10px;
     overflow: hidden;
-    height: 100px;
+    height: 100px;    
+    border-radius:6px;
 }
 .user-content .sub-list{
-    width:300px;
+    width:80%;
     float:left;
 }
 .user-content .sub-list li{
@@ -79,12 +81,10 @@ header input{
     border:none;
     outline:none;
     cursor:pointer;
-    background:crimson;
+    background:#a51414;
     color:#f3f3f3;
-    border-radius:4px;
-    padding:5px 10px;
-    height:40px;
-    font-size: 17px;
-    margin-top:5px;
-    transform: translateY(50%);
+    height:100px;
+    line-height: 100px;
+    font-size: 40px;
+    width:20%;
 }
