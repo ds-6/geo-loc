@@ -36,7 +36,7 @@
                                 <li class='tempBTN' data-doc='<%= user.lat%>,<%=user.long %>'>Get AQI</li>
                             </ul>
                             <button class='card-del' data-doc='/delete/<%= user._id %>'>
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                <i class="fa fa-trash-o" aria-hidden="true" data-doc='/delete/<%= user._id %>'></i>
                             </button>
                         </li>
                     <% }) %>
@@ -91,10 +91,8 @@
             del.forEach(e=>{
                 e.addEventListener('click',delItem);
             })
-            _id('.card-del').addEventListener('click',delItem);
-            function delItem(){
-                const url= _id('.card-del').dataset.doc;
-                console.log(url);
+            function delItem(e){
+                const url= e.target.dataset.doc;
                 fetch(url,{
                     method:'DELETE'
                 })
@@ -104,19 +102,19 @@
 
 /*******Show Weather Details*******/
             const tempBTN = document.querySelectorAll('.tempBTN');
-            tempBTN.forEach(e=>{
+            tempBTN.forEach((e)=>{
                 e.addEventListener('click',getTemp);
             })
-            _id('.tempBTN').addEventListener('click',getTemp);
-            function getTemp(){
+           // _id('.tempBTN').addEventListener('click',getTemp);
+            function getTemp(e){
                 _id('.temp-detail').classList.add('show');
-                const arr= _id('.tempBTN').dataset.doc.split(',');
+                const arr = e.target.dataset.doc.split(',');
+                console.log(arr);
                 const uri ="https://api.openaq.org/v1/measurements?coordinates="+arr[0]+","+arr[1]+"&radius=4000&parameter=pm10&limit=1";
                 fetch(uri,{
                     method:'GET'
                 }).then(res=>res.json())
                 .then(data=>{
-                    console.log(data);
                     const city = data.results[0].location;
                     const aqi = data.results[0].value
                     const dateArr = data.results[0].date.local.split('T')
@@ -125,8 +123,14 @@
                     _id('.temp-result .loc').innerHTML='Location: '+city+'<br/><br/>';
                     _id('.temp-result .aqiData').innerHTML= aqi+" <span class='aqiText'>AQI</span><br/><sub>updated at: "+time+" on "+date+"</sub>";
                 })
+                .catch(err=>{
+                    _id('.temp-result .loc').innerHTML= "Oops! Coudn't find any official data in 4KM radius.";
+                    _id('.temp-result .aqiData').innerHTML="";
+                    _id('.temp-detail').classList.add('show');
+                })
             }
             _id('.fa-times').addEventListener('click',(e)=>{
+
                 _id('.temp-detail').classList.remove('show');
             })
         </script>
