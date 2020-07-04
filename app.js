@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Userloc = require('./models/userloc');
-const keys = require('./config');
 require('dotenv').config();
 
 const app = express ();
