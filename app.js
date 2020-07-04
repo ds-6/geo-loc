@@ -2,10 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Userloc = require('./models/userloc');
 const keys = require('./config');
+require('dotenv').config();
 
 const app = express ();
 
-const dbURI = keys.dbKey;
+const dbURI = process.env.dbKey;
 mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
 .then(result=>{
     
