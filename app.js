@@ -4,6 +4,7 @@ const Userloc = require('./models/userloc');
 require('dotenv').config();
 
 const app = express ();
+console.log(process.env);
 
 const dbURI = process.env.dbKey;
 mongoose.connect(dbURI,{useNewUrlParser:true,useUnifiedTopology:true})
